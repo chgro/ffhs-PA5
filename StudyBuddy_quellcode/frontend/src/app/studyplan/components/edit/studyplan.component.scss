@@ -1,0 +1,53 @@
+::ng-deep ngb-typeahead-window {
+  overflow: scroll;
+  max-height: 300px;
+}
+
+.sum {
+  border-top: 3px solid black;
+}
+
+.border-left-fat {
+  border-left: 3px solid black !important;
+}
+
+.btn-badge {
+  border-color: transparent !important;
+}
+
+.bg-visual-active {
+  color: white;
+  padding: 0.25em 0.4em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 3;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+}
+
+.noscroll {
+  overflow: hidden;
+}
+
+.popover {
+  width: 500px;
+}
+
+@media (max-width: 736px) and (orientation:portrait) {
+  #visualisationForDesktop {
+    display: none;
+  }
+  #visualisationForMobile {
+    display: block;
+  }
+}
+
+@media (min-width: 736px) and (orientation:landscape) {
+  #visualisationForDesktop {
+    display: block;
+  }
+  #visualisationForMobile {
+    display: none;
+  }
+}

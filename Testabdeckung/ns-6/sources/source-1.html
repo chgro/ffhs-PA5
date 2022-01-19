@@ -1,0 +1,211 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ModuleService</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">ch.ffhs.pa5.backend.service</a>
+</div>
+
+<h1>Coverage Summary for Class: ModuleService (ch.ffhs.pa5.backend.service)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ModuleService</td>
+<td class="coverageStat">
+  <span class="percent">
+    80%
+  </span>
+  <span class="absValue">
+    (4/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    95%
+  </span>
+  <span class="absValue">
+    (19/20)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">ModuleService$MockitoMock$1211730967</td>
+  </tr>
+  <tr>
+    <td class="name">ModuleService$MockitoMock$1211730967$auxiliary$LEoi4NBa</td>
+  </tr>
+  <tr>
+    <td class="name">ModuleService$MockitoMock$1211730967$auxiliary$N9uwckJg</td>
+  </tr>
+  <tr>
+    <td class="name">ModuleService$MockitoMock$1211730967$auxiliary$Qj3VRGBv</td>
+  </tr>
+  <tr>
+    <td class="name">ModuleService$MockitoMock$1211730967$auxiliary$yV2Y80L2</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    80%
+  </span>
+  <span class="absValue">
+    (4/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    95%
+  </span>
+  <span class="absValue">
+    (19/20)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package ch.ffhs.pa5.backend.service;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import ch.ffhs.pa5.backend.model.Module;
+<i class="no-highlight">4</i>&nbsp;import ch.ffhs.pa5.backend.model.ModuleType;
+<i class="no-highlight">5</i>&nbsp;import ch.ffhs.pa5.backend.model.SemesterType;
+<i class="no-highlight">6</i>&nbsp;import ch.ffhs.pa5.backend.model.Specialisation;
+<i class="no-highlight">7</i>&nbsp;import ch.ffhs.pa5.backend.repository.IModuleRepository;
+<i class="no-highlight">8</i>&nbsp;import org.springframework.stereotype.Component;
+<i class="no-highlight">9</i>&nbsp;import java.util.Collection;
+<i class="no-highlight">10</i>&nbsp;import java.util.List;
+<i class="no-highlight">11</i>&nbsp;import java.util.stream.Collectors;
+<i class="no-highlight">12</i>&nbsp;import java.util.stream.Stream;
+<i class="no-highlight">13</i>&nbsp;import java.util.stream.StreamSupport;
+<i class="no-highlight">14</i>&nbsp;
+<i class="no-highlight">15</i>&nbsp;/**
+<i class="no-highlight">16</i>&nbsp; * Diese Service-Klasse ModulService dient der Abfrage der Module.
+<i class="no-highlight">17</i>&nbsp; * Die Modul-Daten werden mittels data.sql importiert.
+<i class="no-highlight">18</i>&nbsp; * Es stehen nur Abfragen zur Verfügung, da die Spezialisierungen nicht geändert werden können.
+<i class="no-highlight">19</i>&nbsp; */
+<i class="no-highlight">20</i>&nbsp;@Component
+<i class="no-highlight">21</i>&nbsp;public class ModuleService implements IModuleService {
+<i class="no-highlight">22</i>&nbsp;
+<i class="no-highlight">23</i>&nbsp;    /**
+<i class="no-highlight">24</i>&nbsp;     * Feld für DI des Modul-Repositories
+<i class="no-highlight">25</i>&nbsp;     */
+<i class="no-highlight">26</i>&nbsp;    private final IModuleRepository iModuleRepository;
+<i class="no-highlight">27</i>&nbsp;
+<i class="no-highlight">28</i>&nbsp;    /**
+<i class="no-highlight">29</i>&nbsp;     * Konstruktor der Module-Service Klasse
+<i class="no-highlight">30</i>&nbsp;     *
+<i class="no-highlight">31</i>&nbsp;     * @param iModuleRepository Module-Datenbank Repository - Interface oder konkrete Implementierung
+<i class="no-highlight">32</i>&nbsp;     */
+<i class="no-highlight">33</i>&nbsp;    public ModuleService(
+<b class="fc"><i class="no-highlight">34</i>&nbsp;            IModuleRepository iModuleRepository) {</b>
+<b class="fc"><i class="no-highlight">35</i>&nbsp;        this.iModuleRepository = iModuleRepository;</b>
+<i class="no-highlight">36</i>&nbsp;    }
+<i class="no-highlight">37</i>&nbsp;
+<i class="no-highlight">38</i>&nbsp;    /**
+<i class="no-highlight">39</i>&nbsp;     * Diese Methode liefert auf Basis der Filter (Parameter) eine Liste von Modulen.
+<i class="no-highlight">40</i>&nbsp;     * Die Liste beinhaltet in jedem Fall Werte, da unabhängig von den Filtern die Basis-Module angefügt werden.
+<i class="no-highlight">41</i>&nbsp;     * Die Basis-Module müssen unabhängig von den Filtern zur Verfügung stehen, da diese in jedem Semester und jedem Jahr eingeplant werden können.
+<i class="no-highlight">42</i>&nbsp;     *
+<i class="no-highlight">43</i>&nbsp;     * @param specialisation die Spezialisierung, auf dessen Basis gefiltert werden soll
+<i class="no-highlight">44</i>&nbsp;     * @param year           das Jahr, auf dessen Basis gefiltert werden soll
+<i class="no-highlight">45</i>&nbsp;     * @param semesterType   der Semester-Typ, auf dessen Basis gefiltert werden soll
+<i class="no-highlight">46</i>&nbsp;     * @return Liste von Modulen
+<i class="no-highlight">47</i>&nbsp;     */
+<i class="no-highlight">48</i>&nbsp;    @Override
+<i class="no-highlight">49</i>&nbsp;    public List&lt;Module&gt; getModulesByFilter(Specialisation specialisation, int year, SemesterType semesterType) {
+<b class="fc"><i class="no-highlight">50</i>&nbsp;        Iterable&lt;Module&gt; modules = null;</b>
+<b class="fc"><i class="no-highlight">51</i>&nbsp;        var basicModules = this.getByModuleType(ModuleType.BASIC);</b>
+<i class="no-highlight">52</i>&nbsp;
+<b class="fc"><i class="no-highlight">53</i>&nbsp;        if (specialisation.equals(Specialisation.NONE)) {</b>
+<b class="fc"><i class="no-highlight">54</i>&nbsp;            modules = this.iModuleRepository.findAll();</b>
+<i class="no-highlight">55</i>&nbsp;        } else {
+<b class="fc"><i class="no-highlight">56</i>&nbsp;            modules = this.iModuleRepository.findByRelevanceSpecialisation(specialisation);</b>
+<i class="no-highlight">57</i>&nbsp;        }
+<b class="fc"><i class="no-highlight">58</i>&nbsp;        var allModulesStream = StreamSupport.stream(modules.spliterator(), false);</b>
+<b class="fc"><i class="no-highlight">59</i>&nbsp;        var filteredModules = allModulesStream</b>
+<b class="fc"><i class="no-highlight">60</i>&nbsp;                .filter(i -&gt; semesterType == SemesterType.ALL || i.getSemesterPlan() != null &amp;&amp;</b>
+<b class="nc"><i class="no-highlight">61</i>&nbsp;                        i.getSemesterPlan().stream().anyMatch(x -&gt; x.getSemesterType() == semesterType))</b>
+<b class="fc"><i class="no-highlight">62</i>&nbsp;                .filter(i -&gt; year == 0 || i.getSemesterPlan() != null &amp;&amp;</b>
+<b class="fc"><i class="no-highlight">63</i>&nbsp;                        i.getSemesterPlan().stream().anyMatch(x -&gt; x.getYear() == year))</b>
+<b class="fc"><i class="no-highlight">64</i>&nbsp;                .collect(Collectors.toList());</b>
+<b class="fc"><i class="no-highlight">65</i>&nbsp;        return Stream.of(basicModules, filteredModules)</b>
+<b class="fc"><i class="no-highlight">66</i>&nbsp;                .flatMap(Collection::stream)</b>
+<b class="fc"><i class="no-highlight">67</i>&nbsp;                .collect(Collectors.toList());</b>
+<i class="no-highlight">68</i>&nbsp;    }
+<i class="no-highlight">69</i>&nbsp;
+<i class="no-highlight">70</i>&nbsp;    /**
+<i class="no-highlight">71</i>&nbsp;     * Liefert eine Liste von Modulen basierend auf dem Modul-Typ.
+<i class="no-highlight">72</i>&nbsp;     * Falls zum gewählten Modul-Typ keine Module existieren, wird eine leere Liste zurückgegeben.
+<i class="no-highlight">73</i>&nbsp;     * Modul-Typen sind in einem ENUM hinterlegt.
+<i class="no-highlight">74</i>&nbsp;     *
+<i class="no-highlight">75</i>&nbsp;     * @param moduleType Module zum gewählten Modul-Typ
+<i class="no-highlight">76</i>&nbsp;     * @return Liste von Modulen
+<i class="no-highlight">77</i>&nbsp;     */
+<i class="no-highlight">78</i>&nbsp;    @Override
+<i class="no-highlight">79</i>&nbsp;    public List&lt;Module&gt; getByModuleType(ModuleType moduleType) {
+<b class="fc"><i class="no-highlight">80</i>&nbsp;        var result = this.iModuleRepository.findByModuleType(moduleType);</b>
+<b class="fc"><i class="no-highlight">81</i>&nbsp;        return StreamSupport.stream(result.spliterator(), false)</b>
+<b class="fc"><i class="no-highlight">82</i>&nbsp;                .collect(Collectors.toList());</b>
+<i class="no-highlight">83</i>&nbsp;    }
+<i class="no-highlight">84</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-12-18 10:52</div>
+</div>
+</body>
+</html>

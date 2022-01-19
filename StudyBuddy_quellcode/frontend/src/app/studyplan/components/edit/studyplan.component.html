@@ -1,0 +1,225 @@
+<!-- Einführungs Jumbotron -->
+<ng-template #notFound>
+  <div class="alert alert-dark">
+    <h1>Ooops - 404</h1>
+    {{ 'STUDPLANNOTFOUND' | translate:{'name': studyPlanName} }}
+  </div>
+</ng-template>
+
+<div *ngIf="studyPlan | async as planData; else notFound">
+    <div class="alert alert-dark">
+        <h3>{{ 'YOURCHOICE' | translate }}</h3>
+        <span class="lead">
+          <p [innerHTML]="'STUDYPLANCOMPONENT.NEWPLANINTRODUCTION' | translate"></p>
+          <p>{{'PROGRAM' | translate}}: {{ planData.studyProgram| translate}}</p>
+          <p>{{'PLANNAME' | translate}}: {{ planData.name| translate}}</p>
+        </span>
+    </div>
+
+    <!-- Wahl der Vertiefungsrichtung -->
+    <div *ngIf="studyPlan | async as studyPlan" class="alert alert-dark">
+
+        <h3>{{ 'ADDMODULETOPLAN' | translate }}</h3>
+        <form>
+            <div class="form-group row">
+                <label for="studyYearInput" class="col-sm-4 col-form-label">{{ 'YEAR'| translate }}</label>
+                <div class="col-sm-8">
+                    <input id="studyYearInput" name="studyYearInput" type="number" class="form-control" [ngModel]="yearChoice" (ngModelChange)="onYearChange($event)">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="semesterTypeSelection" class="col-sm-4 col-form-label">{{ 'STUDYPLANCOMPONENT.SEMESTERTYPE'| translate }}</label>
+                <div class="col-sm-8">
+                    <select id="semesterTypeSelection" name="semesterTypeSelection" class="form-control" [ngModel]="semesterTypeChoice" (ngModelChange)="onSemesterTypeChange($event)">
+            <option [ngValue]="undefined" disabled selected
+                    hidden>{{'STUDYPLANCOMPONENT.SEMESTERTYPCHOICE' | translate}}</option>
+            <option *ngFor="let semesterType of semesterType; let i = index"
+                    [ngValue]="semesterType">{{ 'SEMESTERTYPE.' + semesterType | translate }}</option>
+          </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="specificationDropdown" class="col-sm-4 col-form-label">
+          {{ 'STUDYPLANCOMPONENT.SPECIALISATIONCHOICE' | translate }}
+        </label>
+                <div class="col-sm-8">
+                    <select id="specificationDropdown" name="specificationDropdown" class="form-control" [ngModel]="specialisationChoice" (ngModelChange)="onSpecialisationChange($event)">
+            <option *ngFor="let specialisation of specialisations | async; let i = index"
+                    [ngValue]="specialisation">{{ specialisation | translate}}</option>
+          </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="studySemesterDropdown" class="col-sm-4 col-form-label">{{ 'SEMESTER'| translate }}</label>
+                <div class="col-sm-8">
+                    <select id="studySemesterDropdown" name="studySemesterDropdown" class="form-control" [(ngModel)]="semesterChoice">
+            <option [ngValue]="undefined" disabled selected
+                    hidden>{{'STUDYPLANCOMPONENT.SEMESTERCHOICE' | translate}}</option>
+            <option *ngFor="let semester of semesters; let i = index" [ngValue]="semester">{{semester}}</option>
+          </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="moduleChoice" class="col-sm-4 col-form-label">{{ 'MODULES'| translate}}</label>
+                <div class="col-sm-8">
+                </div>
+            </div>
+            <!-- Anzeige der möglichen Module (immersion = vertiefung, basic = basis, elective = wahl) -->
+            <div class="px-2 py-2 border d-flex flex-wrap" *ngIf="modules">
+                <button *ngFor="let module of modules | async" class="p-2 mr-2 mt-2 rounded btn-badge" [ngClass]="{
+                'bg-primary':  module.moduleType === moduleTypeConstants.basic,
+                'bg-secondary':  module.moduleType === moduleTypeConstants.elective,
+                'bg-info':  module.moduleType === moduleTypeConstants.immersion
+                }" (click)="addModuleToStudyPlan(planData.id, module)" [popover]="popTemplate" [popoverContext]="{ module: module }" [triggers]="'mouseenter:mouseleave'">
+          {{ module.name}}
+        </button>
+            </div>
+            <div class="px-2 py-2">
+                {{ 'LEGEND' |translate }}:
+                <span class="badge badge-primary mr-2">{{ 'MODULETYPE.BASIC' | translate}}</span>
+                <span class="badge badge-secondary mr-2">{{ 'MODULETYPE.ELECTIVE' | translate}}</span>
+                <span class="badge badge-info">{{ 'MODULETYPE.IMMERSION' | translate}}</span>
+            </div>
+        </form>
+
+        <ng-template #popTemplate let-module='module' class="popover">
+            <div *ngIf="module.relevance.length > 0; else noData">
+                <h3 class="popover-title popover-header" style="margin: -.5rem -.75rem 0 -.75rem;">Relevanz-Punkte</h3>
+                <div *ngFor="let relevance of module.relevance">{{ relevance.specialisation | translate }} : {{ relevance.relevancePoint }}</div>
+            </div>
+            <div *ngIf="module.semesterPlan.length > 0">
+                <h3 class="popover-title popover-header" style="margin: -.5rem -.75rem 0 -.75rem;">Semesterplan</h3>
+                <div *ngFor="let semesterPlan of module.semesterPlan">{{ semesterPlan.year }} : {{ 'SEMESTERTYPE.' + semesterPlan.semesterType | translate }}</div>
+            </div>
+        </ng-template>
+        <ng-template #noData>
+            {{ 'NODATA' | translate }}
+        </ng-template>
+
+    </div>
+	<!-- Modulübersicht -->
+	<div  class="alert alert-dark">
+		<h3>{{ 'STUDYPLAN' | translate}}</h3>
+
+		<table class="table mt-2">
+			<thead class="thead-light">
+				<tr>
+					<th scope="col">{{ 'SEMESTER' | translate }}</th>
+					<th scope="col">{{ 'MODULES' | translate }}</th>
+					<th scope="col">{{ 'DELETE' | translate }}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let modulePlan of ((studyPlan | async)?.modulePlans || [])">
+					<td>{{ modulePlan.semester }}</td>
+					<td>{{ modulePlan.module.name }}</td>
+					<td>
+                        <button class="btn btn-danger btn-sm" id="removeModuleFromStudyplanButton" type="button" (click)="removeModuleFromStudyPlan(planData.id, modulePlan.module.id)">{{ 'DELETE' | translate }}</button>
+                    </td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+
+    <ng-template #emptytabledata>
+        <td></td>
+    </ng-template>
+    <!-- Visualisation für Desktop und Handy im Landscape Modus -->
+    <div id="visualisationForDesktop" *ngIf="studyPlan" class="alert alert-dark">
+        <h3>{{ 'VISUALIZE' | translate }}</h3>
+        <table class="table  table-striped table-hover">
+            <thead class="thead-light">
+                <tr>
+                    <th>{{ 'MODULE' | translate }}</th>
+                    <th>Jahr</th>
+                    <th>{{ 'SEMESTERTYPE.SPRING' | translate }}</th>
+                    <th>{{ 'SEMESTERTYPE.AUTUMN' | translate }}</th>
+                    <th class="border-left-fat" title="{{ 'SECURITY' | translate }}">ISec</th>
+                    <th>Enterpr.C</th>
+                    <th>DataSc</th>
+                    <th>ECTS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let modulePlan of ((studyPlan | async)?.modulePlans || [])">
+                    <td>{{ modulePlan.module.name }}</td>
+                    <td>{{ modulePlan.year }}</td>
+                    <td [ngClass]="{
+                      'bg-visual-active': modulePlan.semesterType.toString() === 'SPRING',
+                      'badge-primary' : modulePlan.module.moduleType === 'BASIC',
+                      'badge-secondary' : modulePlan.module.moduleType === 'ELECTIVE',
+                      'badge-info' : modulePlan.module.moduleType === 'IMMERSION'
+                    }" *ngIf="modulePlan.semesterType.toString() === 'SPRING'; else emptytabledata">{{ 'MODULETYPE.' + modulePlan.module.moduleType | translate }}</td>
+                    <td [ngClass]="{
+                      'bg-visual-active': modulePlan.semesterType.toString() === 'AUTUMN',
+                      'badge-primary' : modulePlan.module.moduleType === 'BASIC',
+                      'badge-secondary' : modulePlan.module.moduleType === 'ELECTIVE',
+                      'badge-info' : modulePlan.module.moduleType === 'IMMERSION'
+                    }" *ngIf="modulePlan.semesterType.toString() === 'AUTUMN'; else emptytabledata">{{ 'MODULETYPE.' + modulePlan.module.moduleType | translate }}</td>
+                    <td class="border-left-fat">{{ getRelevancePointsByRelevance(modulePlan.module.relevance, 'SECURITY') }}</td>
+                    <td>{{ getRelevancePointsByRelevance(modulePlan.module.relevance, 'ENTERPRISECOMPUTING') }}</td>
+                    <td>{{ getRelevancePointsByRelevance(modulePlan.module.relevance, 'DATASCIENCE') }}</td>
+                    <td>{{ modulePlan.module.ects }}</td>
+                </tr>
+                <tr class="sum">
+                    <td>{{ 'Summe' | translate}}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td class="border-left-fat">{{ totalSECURITY | async }}</td>
+                    <td>{{ totalENTERPRISECOMPUTING | async }}</td>
+                    <td>{{ totalDATASCIENCE | async }}</td>
+                    <td>{{ totalECTS | async }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- Visualisation für Handy im Portrait Modus -->
+    <div id="visualisationForMobile" *ngIf="studyPlan" class="alert alert-dark">
+        <!-- <h2>{{ 'YOURMODULECHOICE' | translate }}</h2>
+        <ul class="list-unstyled">
+            <li *ngFor="let modulePlan of ((studyPlan | async)?.modulePlans || [])">
+                <span class="badge mr-2" [ngClass]="{
+                    'badge-primary' : modulePlan.module.moduleType === 'BASIC',
+                    'badge-secondary' : modulePlan.module.moduleType === 'ELECTIVE',
+                    'badge-info' : modulePlan.module.moduleType === 'IMMERSION'
+                  }"> {{ modulePlan.module.name }}: {{ 'SEMESTERTYPE.'+modulePlan.semesterType | translate }} {{ modulePlan.year }}</span>
+            </li>
+        </ul>-->
+
+        <h3>{{ 'VISUALIZE' | translate }}</h3>
+        <table class="table-responsive-xs  table-striped table-hover">
+            <thead class="thead-light">
+                <tr>
+                    <th>{{ 'MODULE' | translate }}</th>
+                    <th>Semester und Jahr</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let modulePlan of ((studyPlan | async)?.modulePlans || [])">
+                    <td class="bg-visual-active" [ngClass]="{
+                        'badge-primary' : modulePlan.module.moduleType === 'BASIC',
+                        'badge-secondary' : modulePlan.module.moduleType === 'ELECTIVE',
+                        'badge-info' : modulePlan.module.moduleType === 'IMMERSION'
+                      }">{{ modulePlan.module.name }}</td>
+                    <td>{{ modulePlan.semester }} - {{ modulePlan.year }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>{{ 'Summe' | translate}}</h3>
+        <p>{{'SECURITY' | translate}}: {{ totalSECURITY | async }}</p>
+        <p>{{'ENTERPRISECOMPUTING' | translate}}: {{ totalENTERPRISECOMPUTING | async }}</p>
+        <p>{{'DATASCIENCE' | translate}}: {{ totalDATASCIENCE | async }}</p>
+        <p>ECTS: {{ totalECTS | async }}</p>
+    </div>
+
+    <!-- Studienplan löschen -->
+    <div class="alert alert-dark">
+        <h3>{{ 'STUDYPLANCOMPONENT.DELETE' | translate}}</h3>
+        <p>{{ 'STUDYPLANCOMPONENT.DELETETEXT' | translate }}</p>
+        <button class="btn btn-danger" id="deleteStudyPlanButton" type="button" (click)="deleteStudyPlan(planData.id)">{{ 'DELETE' | translate }}</button>
+    </div>
+</div>

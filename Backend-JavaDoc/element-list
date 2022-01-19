@@ -1,0 +1,7 @@
+ch.ffhs.pa5.backend
+ch.ffhs.pa5.backend.controller
+ch.ffhs.pa5.backend.controller.exception
+ch.ffhs.pa5.backend.controller.model
+ch.ffhs.pa5.backend.model
+ch.ffhs.pa5.backend.repository
+ch.ffhs.pa5.backend.service

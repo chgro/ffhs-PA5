@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  db:
+    image: mysql
+    networks:
+      - studybuddy
+    ports:
+      - "3306:3306"
+    command: >
+      bash -c "
+      chmod 644 /etc/mysql/conf.d/*.cnf
+      && /entrypoint.sh mysqld
+      "
+    volumes:
+      - "./mysql/docker.cnf:/etc/mysql/conf.d/docker.cnf"
+    restart: always
+    environment:
+      MYSQL_DATABASE: studyplaner
+      MYSQL_USER: buddy
+      MYSQL_PASSWORD: 1234
+      MYSQL_ROOT_PASSWORD: 1234
+  backend:
+    networks:
+      - studybuddy
+    image: chgrossmann/studienplaner:latest
+    environment:
+      - DATASOURCE_HOST=db
+    ports:
+      - "8080:8080"
+    depends_on:
+      - "db"
+    restart: always
+    environment:
+        - DATASOURCE_HOST=db
+networks:
+  studybuddy:
+    driver: bridge

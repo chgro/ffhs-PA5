@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ch.ffhs.pa5.backend"},{"l":"ch.ffhs.pa5.backend.controller"},{"l":"ch.ffhs.pa5.backend.controller.exception"},{"l":"ch.ffhs.pa5.backend.controller.model"},{"l":"ch.ffhs.pa5.backend.model"},{"l":"ch.ffhs.pa5.backend.repository"},{"l":"ch.ffhs.pa5.backend.service"}];updateSearchResults();

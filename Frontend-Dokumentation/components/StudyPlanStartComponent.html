@@ -1,0 +1,854 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>frontend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">frontend documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  StudyPlanStartComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/studyplan/components/add/studyplanStart.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-StudyPlanStart</code></td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./studyplanStart.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#checkName" >checkName</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#createNewStudyPlan" >createNewStudyPlan</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#planName" >planName</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#programChanged" >programChanged</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#semesters" >semesters</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#studyProgramChoice" >studyProgramChoice</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#studyPrograms" >studyPrograms</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#subscriptions" >subscriptions</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#validPlanName" >validPlanName</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, studyProgramService: <a href="../injectables/StudyProgramService.html" target="_self">StudyProgramService</a>, validatorService: <a href="../injectables/ValidatorService.html" target="_self">ValidatorService</a>, studyPlanService: <a href="../injectables/StudyPlanService.html" target="_self">StudyPlanService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/studyplan/components/add/studyplanStart.component.ts:23</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>studyProgramService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/StudyProgramService.html" target="_self" >StudyProgramService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>validatorService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ValidatorService.html" target="_self" >ValidatorService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>studyPlanService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/StudyPlanService.html" target="_self" >StudyPlanService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="41"
+                            class="link-to-prism">src/app/studyplan/components/add/studyplanStart.component.ts:41</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="32"
+                            class="link-to-prism">src/app/studyplan/components/add/studyplanStart.component.ts:32</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="checkName"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>checkName</b></span>
+                        <a href="#checkName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/studyplan/components/add/studyplanStart.component.ts:57</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createNewStudyPlan"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>createNewStudyPlan</b></span>
+                        <a href="#createNewStudyPlan"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/studyplan/components/add/studyplanStart.component.ts:73</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="planName"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>planName</b></span>
+                        <a href="#planName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/studyplan/components/add/studyplanStart.component.ts:21</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="programChanged"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>programChanged</b></span>
+                        <a href="#programChanged"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/studyplan/components/add/studyplanStart.component.ts:46</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="semesters"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>semesters</b></span>
+                        <a href="#semesters"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>number[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>Array.from({ length: 10 }, (v, i) &#x3D;&gt; i + 1)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/studyplan/components/add/studyplanStart.component.ts:19</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="studyProgramChoice"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>studyProgramChoice</b></span>
+                        <a href="#studyProgramChoice"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/studyplan/components/add/studyplanStart.component.ts:16</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="studyPrograms"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>studyPrograms</b></span>
+                        <a href="#studyPrograms"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/studyplan/components/add/studyplanStart.component.ts:17</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="subscriptions"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>subscriptions</b></span>
+                        <a href="#subscriptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Subscription[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/studyplan/components/add/studyplanStart.component.ts:23</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="validPlanName"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>validPlanName</b></span>
+                        <a href="#validPlanName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>BehaviorSubject&lt;boolean&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new BehaviorSubject&lt;boolean&gt;(false)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/studyplan/components/add/studyplanStart.component.ts:22</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnDestroy, OnInit } from &#x27;@angular/core&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+import { BehaviorSubject, Subscription } from &#x27;rxjs&#x27;;
+import { NewStudyPlan as NewStudyPlanRequest } from &#x27;src/app/shared/backendTypes&#x27;;
+import { ProgramConstants } from &#x27;src/app/shared/programConstants&#x27;;
+import { StudyPlanService } from &#x27;src/app/shared/services/studyPlanService&#x27;;
+import { StudyProgramService } from &#x27;src/app/shared/services/studyProgramService&#x27;;
+import { ValidatorService } from &#x27;src/app/shared/services/validatorService&#x27;;
+
+@Component({
+    selector: &#x27;app-StudyPlanStart&#x27;,
+    templateUrl: &#x27;./studyplanStart.component.html&#x27;
+})
+export class StudyPlanStartComponent implements OnInit, OnDestroy {
+
+    public studyProgramChoice: string;
+    public studyPrograms: string[];
+
+    public semesters: number[] &#x3D; Array.from({ length: 10 }, (v, i) &#x3D;&gt; i + 1)
+
+    public planName: string;
+    public validPlanName: BehaviorSubject&lt;boolean&gt; &#x3D; new BehaviorSubject&lt;boolean&gt;(false);
+    private subscriptions: Subscription[] &#x3D; [];
+
+    constructor(
+        private router: Router,
+        private studyProgramService: StudyProgramService,
+        private validatorService: ValidatorService,
+        private studyPlanService: StudyPlanService) {
+    }
+
+    ngOnInit(): void {
+        this.subscriptions.push(
+            this.studyProgramService.getAllStudyPrograms().subscribe(
+                programs &#x3D;&gt; {
+                    this.studyPrograms &#x3D; programs
+                }
+            ));
+    }
+
+    ngOnDestroy(): void {
+        this.subscriptions?.forEach(x &#x3D;&gt; x.unsubscribe);
+    }
+
+
+    public programChanged &#x3D; ($event: any) &#x3D;&gt; {
+        const name: string &#x3D; $event;
+        this.studyProgramChoice &#x3D; name;
+
+        if (name &#x3D;&#x3D; ProgramConstants.passarelle) {
+            this.semesters &#x3D; [5, 6, 7, 8, 9, 10]
+        } else {
+            this.semesters &#x3D; Array.from({ length: 10 }, (v, i) &#x3D;&gt; i + 1)
+        }
+    }
+
+    public checkName &#x3D; ($event: any) &#x3D;&gt; {
+        const studyPlanName: string &#x3D; $event;
+
+        this.subscriptions.push(
+            this.validatorService.validateStudyPlan(studyPlanName).subscribe(
+                response &#x3D;&gt; {
+                    if (response &#x3D;&#x3D; true) {
+                        this.validPlanName.next(true);
+                        this.planName &#x3D; studyPlanName;
+                    } else {
+                        this.validPlanName.next(false);
+                    }
+                }
+            ));
+    }
+
+    public createNewStudyPlan &#x3D; () &#x3D;&gt; {
+        const newStudyPlanRequest &#x3D; new NewStudyPlanRequest(
+            this.planName,
+            new Date(),
+            this.studyProgramChoice
+        );
+        const studyPlan &#x3D; this.studyPlanService.addNewStudyPlan(newStudyPlanRequest);
+        studyPlan.subscribe(newStudyPlan &#x3D;&gt; {
+            if (newStudyPlan.id.length &gt; 0) {
+                this.router.navigate([&quot;studyplan/edit&quot;], { queryParams: { id: newStudyPlan.id } });
+            } else {
+                // ToDo: Fehlerausgabe an User: neuer Studienplan konnte nicht angelegt werden
+                console.log(&quot;error&quot;);
+            }
+        });
+    }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;alert alert-dark&quot;&gt;
+  &lt;!-- Neuer Studienplan erstellen --&gt;
+  &lt;h1&gt;{{ &#x27;STUDYPLANCOMPONENT.NEWPLAN&#x27; | translate}}&lt;/h1&gt;
+  &lt;div class&#x3D;&quot;p-2&quot;&gt;
+    &lt;select class&#x3D;&quot;form-control&quot; [ngModel]&#x3D;&quot;studyProgramChoice&quot; name&#x3D;&quot;newStudyPlanProgram&quot;
+            (ngModelChange)&#x3D;&quot;programChanged($event)&quot;&gt;
+      &lt;option [ngValue]&#x3D;&quot;undefined&quot; disabled selected hidden&gt;{{&#x27;STUDYPLANCOMPONENT.PROGRAMCHOICE&#x27; | translate}}&lt;/option&gt;
+      &lt;option *ngFor&#x3D;&quot;let program of studyPrograms; let i &#x3D; index&quot; [ngValue]&#x3D;&quot;program&quot;&gt;{{program | translate}}&lt;/option&gt;
+    &lt;/select&gt;
+    &lt;div class&#x3D;&quot;input-group mt-2&quot;&gt;
+      &lt;input [ngModel]&#x3D;&quot;planName&quot; id&#x3D;&quot;newStudyPlanName&quot; name&#x3D;&quot;newStudyPlanName&quot; pattern&#x3D;&quot;[A-Za-z0-9]{255}&quot; type&#x3D;&quot;text&quot;
+             class&#x3D;&quot;form-control&quot; (ngModelChange)&#x3D;&quot;checkName($event)&quot;
+             placeholder&#x3D;&quot;{{&#x27;STUDYPLANCOMPONENT.PLANNAME&#x27; | translate}}&quot;&gt;
+      &lt;div class&#x3D;&quot;input-group-append&quot;&gt;
+        &lt;button class&#x3D;&quot;btn btn-dark&quot; id&#x3D;&quot;newStudyPlanButton&quot; name&#x3D;&quot;newStudyPlanButton&quot;
+                [disabled]&#x3D;&quot;(!(validPlanName | async)) || !studyProgramChoice&quot; type&#x3D;&quot;button&quot;
+                (click)&#x3D;&quot;createNewStudyPlan()&quot;&gt;OK
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="alert alert-dark">  <!-- Neuer Studienplan erstellen -->  <h1>{{ \'STUDYPLANCOMPONENT.NEWPLAN\' | translate}}</h1>  <div class="p-2">    <select class="form-control" [ngModel]="studyProgramChoice" name="newStudyPlanProgram"            (ngModelChange)="programChanged($event)">      <option [ngValue]="undefined" disabled selected hidden>{{\'STUDYPLANCOMPONENT.PROGRAMCHOICE\' | translate}}</option>      <option *ngFor="let program of studyPrograms; let i = index" [ngValue]="program">{{program | translate}}</option>    </select>    <div class="input-group mt-2">      <input [ngModel]="planName" id="newStudyPlanName" name="newStudyPlanName" pattern="[A-Za-z0-9]{255}" type="text"             class="form-control" (ngModelChange)="checkName($event)"             placeholder="{{\'STUDYPLANCOMPONENT.PLANNAME\' | translate}}">      <div class="input-group-append">        <button class="btn btn-dark" id="newStudyPlanButton" name="newStudyPlanButton"                [disabled]="(!(validPlanName | async)) || !studyProgramChoice" type="button"                (click)="createNewStudyPlan()">OK        </button>      </div>    </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'ImpressumComponent', 'selector': 'app-impressum'},{'name': 'StudyPlanComponent', 'selector': 'app-StudyPlan'},{'name': 'StudyPlanStartComponent', 'selector': 'app-StudyPlanStart'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'StudyPlanStartComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'StudyPlanStartComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

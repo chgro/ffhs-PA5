@@ -1,0 +1,22 @@
+<div class="alert alert-dark">
+  <!-- Neuer Studienplan erstellen -->
+  <h1>{{ 'STUDYPLANCOMPONENT.NEWPLAN' | translate}}</h1>
+  <div class="p-2">
+    <select class="form-control" [ngModel]="studyProgramChoice" name="newStudyPlanProgram"
+            (ngModelChange)="programChanged($event)">
+      <option [ngValue]="undefined" disabled selected hidden>{{'STUDYPLANCOMPONENT.PROGRAMCHOICE' | translate}}</option>
+      <option *ngFor="let program of studyPrograms; let i = index" [ngValue]="program">{{program | translate}}</option>
+    </select>
+    <div class="input-group mt-2">
+      <input [ngModel]="planName" id="newStudyPlanName" name="newStudyPlanName" pattern="[A-Za-z0-9]{255}" type="text"
+             class="form-control" (ngModelChange)="checkName($event)"
+             placeholder="{{'STUDYPLANCOMPONENT.PLANNAME' | translate}}">
+      <div class="input-group-append">
+        <button class="btn btn-dark" id="newStudyPlanButton" name="newStudyPlanButton"
+                [disabled]="(!(validPlanName | async)) || !studyProgramChoice" type="button"
+                (click)="createNewStudyPlan()">OK
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
